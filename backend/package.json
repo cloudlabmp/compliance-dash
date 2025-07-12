@@ -4,7 +4,9 @@
   "description": "Node.js backend for the NIST-800 Compliance Dashboard.",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc -p .",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

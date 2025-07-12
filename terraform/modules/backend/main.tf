@@ -156,7 +156,7 @@ resource "kubernetes_deployment" "backend" {
           # Liveness probe
           liveness_probe {
             http_get {
-              path = "/health"
+              path = "/"
               port = 4000
             }
             initial_delay_seconds = 30
@@ -168,7 +168,7 @@ resource "kubernetes_deployment" "backend" {
           # Readiness probe
           readiness_probe {
             http_get {
-              path = "/health"
+              path = "/"
               port = 4000
             }
             initial_delay_seconds = 5

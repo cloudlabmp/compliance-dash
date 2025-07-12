@@ -37,6 +37,12 @@ provider "aws" {
   region = var.region
 }
 
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+
 # Configure kubernetes provider to use EKS module outputs
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
@@ -235,5 +241,12 @@ module "ingress" {
   backend_service_name  = module.backend.service_name
   backend_service_port  = module.backend.service_port
   
-  depends_on = [module.frontend, module.backend]
+  # AWS Load Balancer Controller configuration
+  cluster_name       = var.cluster_name
+  oidc_provider_arn  = module.eks.oidc_provider_arn
+  oidc_provider_url  = module.eks.oidc_provider_url
+  aws_region         = var.region
+  vpc_id             = module.vpc.vpc_id
+  
+  depends_on = [module.frontend, module.backend, module.eks, module.vpc]
 }

@@ -87,3 +87,14 @@ output "frontend_image" {
   description = "Full name of the built frontend image"
   value       = module.ecr.frontend_image
 }
+
+# Ingress outputs (only available if ingress is enabled)
+output "ingress_hostname" {
+  description = "Hostname of the ALB created by the ingress (access your app at http://<hostname>)"
+  value       = var.enable_ingress ? module.ingress[0].ingress_hostname : null
+}
+
+output "application_url" {
+  description = "URL to access the compliance dashboard application"
+  value       = var.enable_ingress ? "http://${module.ingress[0].ingress_hostname}" : "Use kubectl port-forward to access the application"
+}

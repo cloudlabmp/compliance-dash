@@ -31,3 +31,28 @@ variable "backend_service_port" {
   type        = number
   default     = 8080
 }
+
+variable "cluster_name" {
+  description = "Name of the EKS cluster"
+  type        = string
+}
+
+variable "oidc_provider_arn" {
+  description = "ARN of the OIDC provider for the EKS cluster"
+  type        = string
+}
+
+variable "oidc_provider_url" {
+  description = "URL of the OIDC provider for the EKS cluster (without https://)"
+  type        = string
+}
+
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "VPC ID where the EKS cluster is deployed"
+  type        = string
+}
