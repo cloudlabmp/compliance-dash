@@ -48,28 +48,19 @@ resource "kubernetes_deployment" "backend" {
   metadata {
     name      = "${var.environment}-backend"
     namespace = var.namespace
-    labels = {
-      app         = "backend"
-      environment = var.environment
-    }
+    labels    = local.labels
   }
 
   spec {
     replicas = var.replicas
 
     selector {
-      match_labels = {
-        app         = "backend"
-        environment = var.environment
-      }
+      match_labels = local.labels
     }
 
     template {
       metadata {
-        labels = {
-          app         = "backend"
-          environment = var.environment
-        }
+        labels = local.labels
       }
 
       spec {
@@ -107,6 +98,7 @@ resource "kubernetes_deployment" "backend" {
           image = "${var.image_repository}:${var.image_tag}"
 
           port {
+            name           = "http"
             container_port = 4000
           }
 
