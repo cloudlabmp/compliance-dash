@@ -102,7 +102,7 @@ EOF
 variable "force_delete_repositories" {
   description = "Whether to force delete ECR repositories even if they contain images"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "tags" {

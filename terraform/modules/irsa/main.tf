@@ -79,5 +79,5 @@ data "aws_caller_identity" "current" {}
 
 # Get EKS cluster data for OIDC provider
 data "aws_eks_cluster" "cluster" {
-  name = "dev-compliance-dash-dev"
+  name = var.cluster_name
 }

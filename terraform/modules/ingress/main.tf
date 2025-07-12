@@ -17,6 +17,7 @@ resource "kubernetes_ingress_v1" "compliance_dash_ingress" {
       "alb.ingress.kubernetes.io/listen-ports"         = "[{\"HTTP\": 80}]"
       "alb.ingress.kubernetes.io/healthcheck-path"     = "/"
       "alb.ingress.kubernetes.io/healthcheck-protocol" = "HTTP"
+      "alb.ingress.kubernetes.io/load-balancer-attributes" = "deletion_protection.enabled=false"
     }
   }
 
