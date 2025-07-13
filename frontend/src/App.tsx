@@ -4,6 +4,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import axios from 'axios';
 import theme from './theme';
 import ControlsPage from './pages/Controls';
+import logo from './logo.png';
 
 const drawerWidth = 240;
 
@@ -139,10 +140,16 @@ function App() {
           }}
         >
           <Toolbar>
-            <SecurityIcon sx={{ mr: 1, color: 'info.main' }} />
-            <Typography variant="h6" noWrap component="div">
-              NIST-800 Compliance
-            </Typography>
+            <img 
+              src={logo} 
+              alt="Compliance Dashboard Logo" 
+              style={{ 
+                height: 96, 
+                marginRight: 16,
+                borderRadius: 4,
+                objectFit: 'contain'
+              }} 
+            />
           </Toolbar>
           <Divider sx={{ bgcolor: 'divider', my: 1 }} />
           <List>
