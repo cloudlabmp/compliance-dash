@@ -212,7 +212,7 @@ module "frontend" {
 # Deploy IRSA for AWS IAM integration with Kubernetes service accounts
 module "irsa" {
   source         = "./modules/irsa"
-  cluster_name   = var.cluster_name
+  cluster_name   = module.eks.cluster_id
   namespace      = kubernetes_namespace.compliance_dash.metadata[0].name
   environment    = var.environment
   application_name = "compliance-dashboard"
@@ -242,7 +242,7 @@ module "ingress" {
   backend_service_port  = module.backend.service_port
   
   # AWS Load Balancer Controller configuration
-  cluster_name       = var.cluster_name
+  cluster_name       = module.eks.cluster_id
   oidc_provider_arn  = module.eks.oidc_provider_arn
   oidc_provider_url  = module.eks.oidc_provider_url
   aws_region         = var.region
