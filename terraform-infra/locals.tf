@@ -13,4 +13,9 @@ locals {
       dockerfile = "Dockerfile"
     }
   }
+
+  # Secrets to create in AWS Secrets Manager
+  secrets = {
+    openai_api_key = var.openai_api_key
+  }
 }

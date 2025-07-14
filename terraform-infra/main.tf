@@ -21,6 +21,11 @@ module "ecr_docker_images" {
   tag_suffix = local.build_version
 }
 
+module "secrets" {
+  source      = "./modules/secrets"
+  secrets_map = local.secrets
+}
+
 output "repository_urls" {
   description = "Map of service name to ECR repository URL"
   value       = module.ecr_docker_images.repository_urls
