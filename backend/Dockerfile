@@ -1,27 +1,7 @@
-# ---- Base Node image ----
-FROM node:20-alpine AS base
+FROM node:20-alpine
 WORKDIR /app
-
-# ---- Dependencies Layer ----
-FROM base AS deps
-COPY package.json package-lock.json* ./
-RUN npm install --production=false
-
-# ---- Development Image ----
-FROM base AS dev
-ENV NODE_ENV=development
-COPY --from=deps /app/node_modules ./node_modules
-COPY . ./
-# Expose port used by Express app
+COPY package*.json ./
+RUN npm install
+COPY . .
 EXPOSE 4000
-CMD ["npm","run","dev"]
-
-# ---- Production Build ----
-FROM base AS prod
-ENV NODE_ENV=production
-COPY package.json package-lock.json* ./
-RUN npm install --production --ignore-scripts && npm cache clean --force
-COPY . ./
-RUN npm run build
-EXPOSE 4000
-CMD ["node","dist/index.js"]
+CMD ["npm", "start"]

@@ -4,7 +4,6 @@ services:
   backend:
     build:
       context: ./backend
-      target: dev
     container_name: compliance_backend
     ports:
       - "4000:4000"
@@ -15,7 +14,6 @@ services:
       - /app/node_modules
     networks:
       - compliance-net
-    command: sh -c "npm run build && npm run dev"
 
   frontend:
     build: ./frontend
