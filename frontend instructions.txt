@@ -1,0 +1,38 @@
+Lab: Containerize Frontend Application
+Objective
+Containerize the compliance dashboard frontend application and expose it on port 3000.
+
+Requirements:
+1. Containerization
+Create a Dockerfile in the /compliance-dash/frontend directory
+Use Node.js 20.x as the base image
+Set the working directory to /app
+Copy package files and install dependencies
+Copy the rest of the application code
+Build the frontend application
+Expose port 3000 in the container
+
+2. Testing
+Build the Docker image
+Run a container from the image
+Verify the application is accessible at http://localhost:3000
+
+4. Deliverables
+Dockerfile in the /compliance-dash/frontend directory
+A brief README.md with build and run instructions
+
+Success Criteria
+The container builds successfully
+The application is accessible on port 3000
+The container runs in detached mode
+The container can be stopped and removed cleanly
+
+Hints
+Use multi-stage builds to keep the final image small
+Consider using .dockerignore to exclude unnecessary files
+Ensure the application is configured to listen on all interfaces (0.0.0.0)
+
+Additional Notes
+The solution should be production-ready
+Include proper error handling and logging
+Document any assumptions made during implementation

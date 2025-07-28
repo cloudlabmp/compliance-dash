@@ -1,0 +1,32 @@
+Instructions
+🗂 Scenario
+Once the Frontend and Backend services are Dockerized, use Terraform to build, tag, and push them to ECR. They should be tagged in such a way that the containers will be rebuilt and pushed any time the version is incremented. This can be completed as a variable or in a locals block.
+
+🎯 Objectives
+Deploy an end-to-end workflow using Terraform that covers image lifecycle automation in AWS:
+
+1. Provision ECR with Terraform
+Create an Amazon ECR repository using Terraform.
+Ensure proper lifecycle policy and encryption settings are configured.
+
+2. Build the Frontend and Backend Containers with Terraform
+Use Terraform to automate the Docker image build process.
+The build should be tied to a source directory under version control.
+The resulting image must be tagged with the appropriate version or Git commit hash.
+
+3. Push the Containers with Terraform
+Use the kreuzwerker/docker Terraform provider for Docker tasks.
+Authenticate with ECR programmatically.
+Push the newly built image to the ECR repository using Terraform.
+Ensure image tags are consistent and traceable.
+
+4. Trigger Rebuilds on Tag Changes
+Detect when the version tag is changed.
+Trigger a container rebuild and push automatically with Terraform.
+✅ Completion Criteria
+You can consider the lab complete when:
+
+A new ECR repository exists and is correctly configured.
+Terraform builds and pushes a container image to ECR with no manual Docker commands.
+The container image is tagged based on the Git release tag or version identifier.
+Subsequent image rebuilds are triggered only when a tag changes in the source.
