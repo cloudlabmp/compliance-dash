@@ -1,0 +1,52 @@
+Instructions
+🗂 Scenario
+You're part of a platform team tasked with deploying a full-stack application composed of a React-based frontend and a backend API service. The application consumes the OpenAI API, and the API key must be securely stored and accessed via AWS Secrets Manager. Your infrastructure team has mandated that all workloads must be deployed using infrastructure as code with Terraform.
+
+You can choose between ECS with Fargate or EKS for your deployment platform, but the implementation must follow AWS security best practices, including least-privilege IAM access and secure secret handling.
+
+🎯 Objectives
+Your mission is to deploy the full application stack securely and reliably using Terraform, meeting the following requirements:
+
+1. Platform Deployment
+Choose either Amazon ECS with Fargate or Amazon EKS to host your application.
+Deploy all necessary cluster resources (VPC, subnets, networking, compute, etc.) using Terraform.
+2. Load Balancer Integration
+Deploy a load balancer (ALB) that:
+
+Accepts public traffic for the frontend.
+Routes internal traffic from the frontend to the backend service.
+Ensure the load balancer is properly integrated with your container orchestration platform.
+
+3. Secure Secret Access
+Configure your backend service to access secrets at runtime using one of the following:
+
+IAM Roles for Service Accounts (IRSA) if using EKS.
+Task Execution Role or Task Role if using ECS Fargate.
+Do not hardcode any secrets in your code or Terraform configuration.
+
+4. Frontend and Backend Services
+Deploy a frontend service (React) that serves the UI.
+
+Deploy the backend service (Node.js) that:
+
+Reads the OpenAI API key from the secret manager.
+Accepts HTTP requests from the frontend.
+Ensure both services are pulled from Amazon ECR.
+
+✅ Completion Criteria
+You should consider the challenge complete when:
+
+A public user can access the frontend via HTTP (Bonus points for HTTPS) through the load balancer.
+
+The frontend can successfully call the backend.
+
+The backend can securely retrieve the OpenAI API key from Secrets Manager at runtime.
+
+All infrastructure is provisioned using Terraform and follows modular, reusable patterns.
+
+No secrets are exposed in plaintext, state, or version control.
+
+Terraform outputs include at least:
+
+The public URL of the frontend.
+The ARN or name of the secret being used.
